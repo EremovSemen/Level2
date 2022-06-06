@@ -1,70 +1,43 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 public class Task1 {
 
 
-
     public static void main(String[] args) {
-        int A = 0;
-        int B = 0;
-        int C = 0;
-        int D = 0;
-        int F = 0;
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("Ваня") ;
+        arrayList.add("Ваня") ;
+        arrayList.add("Ваня");
+        arrayList.add("Таня") ;
+        arrayList.add("Олег");
+        arrayList.add("Леша") ;
+        arrayList.add("Тоша") ;
+        arrayList.add("Олег");
+        arrayList.add("Александр");
+        arrayList.add("Дима");
+        arrayList.add("Ваня") ;
+        arrayList.add("Аня") ;
+        System.out.println("Оригинальный лист: ");
+        System.out.println(arrayList);
+        System.out.println("Считаем колличество повторений выбранного эллемента:");
+        get(arrayList,"Ваня");
 
+        HashSet<String> set = new HashSet<>(arrayList);
+        System.out.println("Уникальные эллементы:");
+        System.out.println(set);
 
-        ArrayList<String> arr = new ArrayList<>();
-        arr.add("A");
-        arr.add("A");
-        arr.add("A");
-        arr.add("A");
-        arr.add("B");
-        arr.add("B");
-        arr.add("B");
-        arr.add("B");
-        arr.add("C");
-        arr.add("C");
-        arr.add("D");
-        arr.add("F");
-        System.out.println("Начальный список: " + arr);
-        Iterator<String> iter = arr.iterator();
-        while (iter.hasNext()) {
-            String str = iter.next();
-            if (str.equals("A")) {
-                A++;
+    }
+    public static void get(ArrayList<String> list, String setName) {
+        int sum = 0;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).equals(setName)) {
+                sum++;
             }
-            if (str.equals("B")) {
-                B++;
-            }
-            if (str.equals("C")) {
-                C++;
-            }
-            if (str.equals("D")) {
-                D++;
-            }
-            if (str.equals("F")) {
-                F++;
-            }
-
-            }
-        System.out.println("Количество повторений эллмента: " + "A- " + A);
-        System.out.println("Количество повторений эллмента: " + "B- " + B);
-        System.out.println("Количество повторений эллмента: " + "C- " + C);
-        System.out.println("Количество повторений эллмента: " + "D- " + D);
-        System.out.println("Количество повторений эллмента: " + "F- " + F);
-
-        Set set = new HashSet<>(arr);
-
-        System.out.println("Уникальные эллементы: "+ set);
-
-
-
-
-
-
-
-
-
-
+        }
+        System.out.println(setName + " встречается " + sum + " раз(а)");
     }
 
 }
+
