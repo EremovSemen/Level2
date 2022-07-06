@@ -1,42 +1,39 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 public class Task1 {
 
 
     public static void main(String[] args) {
-        ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("Ваня") ;
-        arrayList.add("Ваня") ;
-        arrayList.add("Ваня");
-        arrayList.add("Таня") ;
-        arrayList.add("Олег");
-        arrayList.add("Леша") ;
-        arrayList.add("Тоша") ;
-        arrayList.add("Олег");
-        arrayList.add("Александр");
-        arrayList.add("Дима");
-        arrayList.add("Ваня") ;
-        arrayList.add("Аня") ;
-        System.out.println("Оригинальный лист: ");
-        System.out.println(arrayList);
-        System.out.println("Считаем колличество повторений выбранного эллемента:");
-        get(arrayList,"Ваня");
+        String[] words = """
+         Универсальное средство для общения и поиска друзей и одноклассников,
+        которым ежедневно пользуются десятки миллионов человек, десятки миллионов человек."""
+                .toLowerCase().split("\\p{Blank}+");
 
-        HashSet<String> set = new HashSet<>(arrayList);
-        System.out.println("Уникальные эллементы:");
-        System.out.println(set);
 
-    }
-    public static void get(ArrayList<String> list, String setName) {
-        int sum = 0;
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).equals(setName)) {
-                sum++;
-            }
+        List<String> wordList = Arrays.asList(words);
+        Set<String> uniqueWords = new HashSet<>(wordList);
+
+        long start = System.currentTimeMillis();
+
+        for (String word : uniqueWords) {
+            int count = Collections.frequency(wordList, word);
         }
-        System.out.println(setName + " встречается " + sum + " раз(а)");
+        System.out.println("n * n: " + (System.currentTimeMillis() - start));
+
+        Map<String, Integer> map = new HashMap<>((int) (wordList.size() * 1.25));
+
+        for (String s : wordList) {
+            Integer count;
+            if (!map.containsKey(s)) {
+                count = 1;
+            } else {
+                count = map.get(s) + 1;
+            }
+            map.put (s,count);
+        }
+        map.forEach((k, v) -> System.out.println("Слово '" + k + "' встретилось " + v + " раз"));
+
     }
 
 }
